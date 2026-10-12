@@ -19,7 +19,7 @@ from rag.retriever import tokenize
 
 load_dotenv()
 SAMPLE = Path(__file__).parent / "sample_docs" / "northwind_handbook.pdf"
-MODELS = [DEFAULT_MODEL, "llama-3.1-8b-instant", "openai/gpt-oss-120b"]
+MODELS = [DEFAULT_MODEL, "openai/gpt-oss-20b", "qwen/qwen3.8-27b"]
 
 st.set_page_config(page_title="Docs Q&A", page_icon="📑", layout="wide")
 

@@ -1,6 +1,6 @@
 # RAG Document Assistant
 
-Ask questions about your own PDFs and documents and get answers that **only use what's in the files**, with a page reference on every claim. It uses hybrid search (keyword + semantic), a relevance guard against made-up answers, and Llama 3.3 70B through Groq.
+Ask questions about your own PDFs and documents and get answers that **only use what's in the files**, with a page reference on every claim. It uses hybrid search (keyword + semantic), a relevance guard against made-up answers, and GPT-OSS 120B through Groq.
 
 ![App screenshot](images/screenshot.png)
 *Retrieval-only mode (no API key yet): the most relevant passages with the matching words highlighted.*
@@ -33,7 +33,7 @@ Ask questions about your own PDFs and documents and get answers that **only use 
                                                     │
                                      relevance guard (skip LLM if nothing matches)
                                                     │
-                                 numbered passages + rules ──► Groq (Llama 3.3 70B) ──► answer [1][2]
+                                 numbered passages + rules ──► Groq (GPT-OSS 120B) ──► answer [1][2]
 ```
 
 **Design choices**

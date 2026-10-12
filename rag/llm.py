@@ -1,4 +1,4 @@
-"""Answer generation with Groq (Llama 3.3 70B by default)."""
+"""Answer generation with Groq (GPT-OSS 120B by default)."""
 from __future__ import annotations
 
 import os
@@ -7,7 +7,7 @@ from typing import Iterator
 
 from .retriever import Hit
 
-DEFAULT_MODEL = "llama-3.3-70b-versatile"
+DEFAULT_MODEL = "openai/gpt-oss-120b"
 
 SYSTEM_PROMPT = """You answer questions using ONLY the numbered context passages you are given.
 
