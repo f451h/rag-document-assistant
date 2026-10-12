@@ -64,8 +64,13 @@ python -m eval.evaluate
 | Method | Hit@1 | Hit@3 | Hit@5 | MRR |
 |---|---|---|---|---|
 | Keyword (BM25) | 0.88 | 0.92 | 0.92 | 0.896 |
+| Semantic (bge-small embeddings) | **0.96** | **1.00** | **1.00** | **0.979** |
+| Hybrid (RRF) | 0.92 | **1.00** | **1.00** | 0.944 |
 
-The script also scores semantic-only and hybrid search when the embedding model is available, and writes the table to `eval/results.md`. BM25 misses mainly happen on paraphrased questions with no shared words. Those are the cases the semantic side is there to catch.
+**What this shows**
+- Keyword search misses 2 of 24 questions completely. Both are paraphrased: *"How far ahead do I have to request a week of vacation?"* (the handbook says "annual leave requests ... at least 2 weeks in advance") and *"When can I move to a different team internally?"* (the handbook says "internal transfer").
+- Semantic and hybrid search both put the right page in the top 3 for **every** question. Since the model reads the top 5 passages, that's what decides answer quality.
+- On this small, clean handbook, semantic search alone ranks slightly better at position 1. I keep hybrid as the default anyway, because keyword matching guards against cases where embeddings struggle and this handbook doesn't test: exact codes, names, amounts and acronyms in real documents. With only 24 questions, the gap between 0.96 and 0.92 is a single question.
 
 ## Tests
 
