@@ -44,7 +44,7 @@ Ask questions about your own PDFs and documents and get answers that **only use 
 ## Quick start
 
 ```bash
-git clone https://github.com/Fasiuu/rag-document-assistant
+git clone https://github.com/f451h/rag-document-assistant
 cd rag-document-assistant
 pip install -r requirements.txt
 cp .env.example .env          # paste your free Groq key from console.groq.com
