@@ -3,7 +3,7 @@
 Ask questions about your own PDFs and documents and get answers that **only use what's in the files**, with a page reference on every claim. It uses hybrid search (keyword + semantic), a relevance guard against made-up answers, and GPT-OSS 120B through Groq.
 
 ![App screenshot](images/screenshot.png)
-*Retrieval-only mode (no API key yet): the most relevant passages with the matching words highlighted.*
+*The sample handbook loaded, with a cited answer and the source passage it came from (matching words highlighted).*
 
 ## Features
 

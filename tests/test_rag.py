@@ -112,3 +112,9 @@ def test_prompt_numbers_passages(sample_index):
 
 def test_cited_numbers_ignores_invalid_references():
     assert cited_numbers("Yes [1]. Also [3][2] and [9].", n_hits=3) == [1, 2, 3]
+
+
+def test_fullwidth_citations_are_understood():
+    from rag.llm import normalise_citations
+    assert cited_numbers("Up to 5 days can be carried over 【1】.", n_hits=5) == [1]
+    assert normalise_citations("days 【1】【3】") == "days [1][3]"

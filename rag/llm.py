@@ -34,9 +34,17 @@ def build_messages(question: str, hits: list[Hit], history: list[dict] | None = 
     return messages
 
 
+_BRACKETS = str.maketrans({"【": "[", "】": "]", "［": "[", "］": "]"})
+
+
+def normalise_citations(text: str) -> str:
+    """Some models (e.g. GPT-OSS) write citations as 【1】; turn them into [1]."""
+    return text.translate(_BRACKETS)
+
+
 def cited_numbers(answer: str, n_hits: int) -> list[int]:
     """Citation numbers that actually appear in the answer and point to a real passage."""
-    nums = {int(n) for n in re.findall(r"\[(\d+)\]", answer)}
+    nums = {int(n) for n in re.findall(r"\[\s*(\d+)\s*\]", normalise_citations(answer))}
     return sorted(n for n in nums if 1 <= n <= n_hits)
 
 
@@ -56,9 +64,9 @@ class GroqLLM:
         for event in resp:
             delta = event.choices[0].delta.content
             if delta:
-                yield delta
+                yield normalise_citations(delta)
 
     def complete(self, messages: list[dict]) -> str:
         resp = self.client.chat.completions.create(model=self.model, messages=messages,
                                                    temperature=self.temperature)
-        return resp.choices[0].message.content
+        return normalise_citations(resp.choices[0].message.content)
